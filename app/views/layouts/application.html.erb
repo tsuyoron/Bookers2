@@ -8,6 +8,7 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/163b8cc948.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
@@ -27,20 +28,53 @@
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
                 <li class="nav-item active">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete ,class: "nav-link text-light" %>
+                  <div class= "nav-link text-light">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <%= link_to "Home", show_user_path, class: "text-light" %>
+                  </div>
+                </li>
+                <li class="nav-item active"  aria-hidden="true">
+                  <div class= "nav-link text-light">
+                    <i class="fa-solid fa-users"></i>
+                    <%= link_to "Users", index_user_path ,class: "text-light"%>
+                  </div>
+                </li>
+                <li class="nav-item active">
+                  <div class= "nav-link text-light">
+                    <i class="fa-solid fa-book-open"></i>
+                    <%= link_to "Books", books_path ,class: "text-light"%>
+                  </div>
+                </li>
+                <li class="nav-item active">
+                  <div class= "nav-link text-light">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <%= link_to " Log out", destroy_user_session_path, method: :delete ,class: "text-light" %>
+                  </div>
                 </li>
               <% else %>
                 <li class="nav-item active">
-                  <%= link_to "Home", root_path ,class: "nav-link text-light"%>
+                  <div class= "nav-link text-light">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <%= link_to "Home", root_path, class: "text-light" %>
+                  </div>
+                </li>
+                <li class="nav-item active"  aria-hidden="true">
+                  <div class= "nav-link text-light">
+                    <i class="fa-solid fa-link"></i>
+                    <%= link_to "About", about_home_path ,class: "text-light"%>
+                  </div>
                 </li>
                 <li class="nav-item active">
-                  <%= link_to "About", about_home_path ,class: "nav-link text-light"%>
+                  <div class= "nav-link text-light">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <%= link_to "Sign up", new_user_registration_path ,class: "text-light"%>
+                  </div>
                 </li>
                 <li class="nav-item active">
-                  <%= link_to "Sign up", new_user_registration_path ,class: "nav-link text-light"%>
-                </li>
-                <li class="nav-item active">
-                  <%= link_to "Log in", new_user_session_path ,class: "nav-link text-light"%>
+                  <div class= "nav-link text-light">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <%= link_to "Log in", new_user_session_path ,class: "text-light"%>
+                  </div>
                 </li>
               <% end %>
             </ul>
@@ -55,7 +89,7 @@
   <footer class="footer">
     <div class="container mt-5">
       <div class="row d-flex justify-content-center">
-        <p class="text-muted">CopyRight Infratop.inc</p>
+        <p>CopyRight Infratop.inc</p>
       </div>
     </div>
   </footer>

@@ -1,0 +1,28 @@
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <!--User infoに関する記載-->
+      <h2>User info</h2>
+      <%= image_tag user.get_profile_image(100,100) %>
+
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>name</th>
+            <th><%= user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= user.introduction %></th>
+          </tr>
+
+        </tbody>
+      </table>
+      <div class="row">
+        <!--Iconをlink_toを利用して表示させる方法が分からない-->
+        <%= link_to books_path, class: "btn btn-outline-secondary btn-block",method: :get do%>
+          <i class="fa-solid fa-user-gear"></i>
+        <% end %>
+      </div>
+

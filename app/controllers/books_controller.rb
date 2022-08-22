@@ -15,10 +15,16 @@ class BooksController < ApplicationController
   end
 
   def create
-    book = Book.new(book_params)
-    book.user_id = current_user.id
-    book.save
-    redirect_to book_path(book.id), notice: "Successfully created your prototype."
+    @book = Book.new(book_params)
+    @book.user_id = current_user.id
+    if @book.save
+      redirect_to book_path(@book.id), notice: "Successfully created your prototype."
+    else
+      @user = User.find(current_user.id.to_s)
+      @books = Book.all
+      @book_new = Book.new
+      render :index
+    end
   end
 
   def edit

@@ -33,8 +33,11 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find_by(id: params[:id])
-    @book.update(book_params)
-    redirect_to book_path(id: params[:id]), notice: "Successfully updated  your prototype."
+    if @book.update(book_params)
+      redirect_to book_path(id: params[:id]), notice: "Successfully updated  your prototype."
+    else
+      render :edit
+    end
   end
 
   def destroy

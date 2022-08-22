@@ -9,6 +9,6 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
 
-  resources :books, only: [:new, :index, :show, :create]
+  resources :books, only: [:new, :index, :show, :create, :edit, :destroy]
 
 end

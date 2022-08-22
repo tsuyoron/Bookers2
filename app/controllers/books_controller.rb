@@ -3,6 +3,9 @@ class BooksController < ApplicationController
   end
 
   def index
+    @user = User.find_by(current_user.id.to_s)
+    @book_new = Book.new
+    @books = Book.all
   end
 
   def show

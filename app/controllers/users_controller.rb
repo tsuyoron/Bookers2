@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     @user = User.find_by(current_user.id.to_s)
     @book = Book.new
     @book.user_id = current_user.id
-    @books = Book.all
+    @users = User.all
 
 
   end
@@ -11,7 +11,10 @@ class UsersController < ApplicationController
 
 
   def show
-
+    @user = User.find_by(current_user.id.to_s)
+    @book = Book.new
+    @book.user_id = current_user.id
+    @books = Book.all
   end
 
 

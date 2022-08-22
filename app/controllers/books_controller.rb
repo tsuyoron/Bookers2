@@ -18,7 +18,7 @@ class BooksController < ApplicationController
     book = Book.new(book_params)
     book.user_id = current_user.id
     book.save
-    redirect_to book_path(book.id)
+    redirect_to book_path(book.id), notice: "Successfully created your prototype."
   end
 
   def edit
@@ -28,7 +28,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find_by(id: params[:id])
     @book.update(book_params)
-    redirect_to book_path(id: params[:id])
+    redirect_to book_path(id: params[:id]), notice: "Successfully updated  your prototype."
   end
 
   def destroy

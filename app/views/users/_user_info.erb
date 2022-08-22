@@ -17,7 +17,7 @@
       </table>
       <div class="row">
         <!--Iconをlink_toを利用して表示させる方法が分からない-->
-        <%= link_to books_path, class: "btn btn-outline-secondary btn-block",method: :get do%>
+        <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block",method: :get do%>
           <i class="fa-solid fa-user-gear"></i>
         <% end %>
       </div>

@@ -12,10 +12,9 @@ class BooksController < ApplicationController
   end
 
   def show
-    @user = User.find(current_user.id.to_s)
     @book_new = Book.new
     @book = Book.find_by(id: params[:id])
-    @book.user.name = User.find(current_user.id.to_s).name
+    @user = @book.user
   end
 
   def create
@@ -26,11 +25,9 @@ class BooksController < ApplicationController
     else
       @user = User.find(current_user.id.to_s)
       @books = Book.all
-      @book_new = Book.new
-      @book = Book.find(id: params[:id])
-      @book.user.name = User.find_(current_user.id.to_s).name
-      render :show
-
+      # @book = Book.find(id: params[:id])
+      # @book.user.name = User.find_(current_user.id.to_s).name
+      render :index
     end
   end
 

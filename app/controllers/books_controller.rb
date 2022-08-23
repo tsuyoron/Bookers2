@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+  before_action :correct_user, only: [:edit, :update, :destroy]
+
+
   def new
   end
 
@@ -12,18 +15,22 @@ class BooksController < ApplicationController
     @user = User.find(current_user.id.to_s)
     @book_new = Book.new
     @book = Book.find_by(id: params[:id])
+    @book.user.name = User.find(current_user.id.to_s).name
   end
 
   def create
-    @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    if @book.save
-      redirect_to book_path(@book.id), notice: "Successfully created your prototype."
+    @book_new = Book.new(book_params)
+    @book_new.user_id = current_user.id
+    if @book_new.save
+      redirect_to book_path(@book_new.id), notice: "successfully"
     else
       @user = User.find(current_user.id.to_s)
       @books = Book.all
       @book_new = Book.new
-      render :index
+      @book = Book.find(id: params[:id])
+      @book.user.name = User.find_(current_user.id.to_s).name
+      render :show
+
     end
   end
 
@@ -34,7 +41,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find_by(id: params[:id])
     if @book.update(book_params)
-      redirect_to book_path(id: params[:id]), notice: "Successfully updated  your prototype."
+      redirect_to book_path(id: params[:id]), notice: "successfully"
     else
       render :edit
     end
@@ -50,6 +57,13 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :body)
+    #params.permit(:title, :body, :id)
+  end
+
+  def correct_user
+    @book = Book.find(params[:id])
+    @user = @book.user
+    redirect_to(books_path) unless @user == current_user
   end
 
 end
